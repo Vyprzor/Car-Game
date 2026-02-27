@@ -62,7 +62,44 @@ canvas{display:block;position:fixed;top:0;left:0;z-index:0;}
 .dev-inp-wrap button{background:rgba(0,255,100,0.05);border:1px solid rgba(0,255,100,0.12);color:#3a7a58;padding:5px 8px;cursor:pointer;font-family:'Courier New',monospace;font-size:9px;letter-spacing:1px;border-radius:5px;transition:all 0.2s;}
 .dev-inp-wrap button:hover{border-color:rgba(0,255,100,0.35);color:#00ff64;}
 
-/* CAUGHT SCREEN */
+/* TURBO BAR */
+#turbo-bar-wrap{position:fixed;bottom:52px;left:50%;transform:translateX(-50%);display:none;flex-direction:column;align-items:center;gap:3px;pointer-events:none;z-index:50;}
+#turbo-label{color:rgba(255,180,0,0.7);font-size:9px;letter-spacing:3px;}
+#turbo-bar-bg{width:140px;height:6px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden;border:1px solid rgba(255,180,0,0.2);}
+#turbo-bar-fill{height:100%;width:100%;background:linear-gradient(90deg,#ff6600,#ffdd00);border-radius:3px;transition:width 0.05s;transform-origin:left;}
+#turbo-ready{color:#ffdd00;font-size:9px;letter-spacing:2px;opacity:0;transition:opacity 0.2s;}
+#help-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:310;backdrop-filter:blur(5px);}
+#help-overlay h2{color:#f5e6c8;font-size:28px;font-style:italic;letter-spacing:6px;margin-bottom:6px;}
+#help-overlay .hsub{color:#444;font-size:10px;letter-spacing:5px;margin-bottom:28px;}
+.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 32px;margin-bottom:28px;max-width:480px;width:100%;}
+.help-row{display:flex;align-items:center;gap:10px;}
+.hkey{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:6px;padding:4px 10px;color:#f5e6c8;font-size:11px;letter-spacing:1px;font-family:'Courier New',monospace;white-space:nowrap;min-width:60px;text-align:center;}
+.hdesc{color:#6a6258;font-size:11px;letter-spacing:1px;}
+#close-help-btn{background:transparent;border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#555;padding:7px 24px;cursor:pointer;font-family:'Georgia',serif;font-size:11px;letter-spacing:3px;transition:color 0.2s;}
+#close-help-btn:hover{color:#fff;}
+
+/* MISSIONS OVERLAY */
+#missions-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:310;backdrop-filter:blur(5px);}
+#missions-overlay h2{color:#f5e6c8;font-size:28px;font-style:italic;letter-spacing:6px;margin-bottom:6px;}
+#missions-overlay .msub{color:#444;font-size:10px;letter-spacing:5px;margin-bottom:28px;}
+#mission-list{display:flex;flex-direction:column;gap:10px;width:100%;max-width:500px;margin-bottom:24px;}
+.mission-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.mission-card.done{border-color:rgba(100,255,100,0.25);background:rgba(100,255,100,0.03);}
+.mc-left{flex:1;}
+.mc-name{color:#f5e6c8;font-size:12px;margin-bottom:3px;}
+.mc-desc{color:#4a4438;font-size:10px;letter-spacing:1px;}
+.mc-prog{margin-top:6px;height:3px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;}
+.mc-bar{height:100%;background:linear-gradient(90deg,#ffd700,#ffaa00);border-radius:2px;transition:width 0.3s;}
+.mc-reward{color:#ffd700;font-size:12px;text-align:right;white-space:nowrap;}
+.mc-done{color:#55aa55;font-size:18px;}
+#close-missions-btn{background:transparent;border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#555;padding:7px 24px;cursor:pointer;font-family:'Georgia',serif;font-size:11px;letter-spacing:3px;transition:color 0.2s;}
+#close-missions-btn:hover{color:#fff;}
+
+/* MISSIONS HUD */
+#mission-hud{position:fixed;top:14px;left:18px;display:none;background:rgba(0,0,0,0.65);border:1px solid rgba(255,200,50,0.2);border-radius:12px;padding:7px 14px;pointer-events:none;z-index:50;}
+#mission-hud .mh-title{color:#aaa;font-size:9px;letter-spacing:2px;margin-bottom:3px;}
+#mission-hud .mh-name{color:#f5e6c8;font-size:11px;margin-bottom:2px;}
+#mission-hud .mh-prog{color:#ffd700;font-size:10px;}
 #caught-screen{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:250;backdrop-filter:blur(6px);}
 #caught-screen h2{color:#ff4444;font-size:52px;font-style:italic;letter-spacing:8px;margin-bottom:4px;text-shadow:0 0 60px rgba(255,0,0,0.6);animation:caught-pulse 1.5s ease-in-out infinite;}
 @keyframes caught-pulse{0%,100%{text-shadow:0 0 60px rgba(255,0,0,0.6);}50%{text-shadow:0 0 100px rgba(255,0,0,0.9),0 0 200px rgba(255,0,0,0.3);}}
@@ -83,38 +120,90 @@ canvas{display:block;position:fixed;top:0;left:0;z-index:0;}
 .p-btn.primary{border-color:rgba(255,220,150,0.3);color:#f5e6c8;}
 .p-btn.primary:hover{background:rgba(255,220,150,0.07);border-color:rgba(255,220,150,0.65);}
 
-#shop-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:210;backdrop-filter:blur(5px);}
+#shop-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:320;backdrop-filter:blur(5px);overflow-y:auto;}
 #shop-overlay h2{color:#f5e6c8;font-size:32px;font-style:italic;margin-bottom:5px;}
 #shop-overlay .ssub{color:#444;font-size:10px;letter-spacing:5px;margin-bottom:32px;}
 #car-grid{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;max-width:760px;}
-.car-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:18px 20px;text-align:center;width:160px;cursor:pointer;transition:all 0.2s;}
+.car-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:14px 16px;text-align:center;width:175px;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;gap:4px;}
 .car-card:hover{background:rgba(255,255,255,0.07);transform:translateY(-2px);}
 .car-card.owned{border-color:rgba(100,255,100,0.25);}
 .car-card.active{border-color:rgba(255,215,0,0.5);background:rgba(255,215,0,0.04);}
-.cc-icon{font-size:34px;margin-bottom:8px;}.cc-name{color:#f5e6c8;font-size:12px;margin-bottom:3px;font-style:italic;}.cc-mph{color:#5588cc;font-size:10px;margin-bottom:10px;letter-spacing:1px;}
-.cbtn{font-size:10px;padding:4px 10px;border-radius:6px;cursor:pointer;font-family:'Georgia',serif;border:1px solid;transition:all 0.2s;background:transparent;}
+.cc-icon{font-size:30px;}.cc-name{color:#f5e6c8;font-size:12px;font-style:italic;}
+.cc-mph{color:#5588cc;font-size:10px;letter-spacing:1px;}
+.cc-desc{color:#4a4438;font-size:9px;letter-spacing:.5px;line-height:1.4;margin:2px 0;}
+.cc-power{background:rgba(255,180,0,0.06);border:1px solid rgba(255,180,0,0.15);border-radius:6px;padding:5px 7px;margin:3px 0 5px;text-align:left;}
+.cc-picon{font-size:11px;margin-right:4px;}
+.cc-pname{color:#ffcc44;font-size:9px;letter-spacing:1px;}
+.cc-pdesc{display:block;color:#6a5a30;font-size:8px;margin-top:2px;line-height:1.3;}
+.cc-nopow{color:#2a2a2a;font-size:8px;letter-spacing:1px;padding:5px 0;margin:3px 0 5px;}
+.cbtn{font-size:10px;padding:5px 10px;border-radius:6px;cursor:pointer;font-family:'Georgia',serif;border:1px solid;transition:all 0.2s;background:transparent;width:100%;}
 .cbtn.buy{color:#ffd700;border-color:rgba(255,215,0,0.35);}.cbtn.buy:hover{background:rgba(255,215,0,0.08);}
 .cbtn.drive{color:#88ff88;border-color:rgba(100,255,100,0.25);}.cbtn.drive:hover{background:rgba(100,255,100,0.06);}
 .cbtn.cur{color:#ffd700;border-color:transparent;cursor:default;}.cbtn.lock{color:#3a3a3a;border-color:#222;cursor:default;}
+
+/* POWERUP HUD */
+#power-hud{position:fixed;bottom:18px;right:80px;display:none;flex-direction:column;align-items:center;gap:3px;pointer-events:none;z-index:50;}
+#power-icon{font-size:22px;transition:filter 0.2s;}
+#power-name{color:#ffcc44;font-size:9px;letter-spacing:2px;}
+#power-cd-bar{width:50px;height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;}
+#power-cd-fill{height:100%;width:100%;background:linear-gradient(90deg,#ffcc00,#ff8800);border-radius:2px;transition:width 0.1s;}
+#power-key{color:rgba(255,255,255,0.25);font-size:8px;letter-spacing:1px;}
+#power-active-msg{position:fixed;top:45%;left:50%;transform:translate(-50%,-50%);color:#ffcc44;font-size:20px;letter-spacing:6px;font-style:italic;pointer-events:none;z-index:60;opacity:0;transition:opacity 0.3s;text-shadow:0 0 20px rgba(255,200,0,0.8);}
+
+/* JUMP HEIGHT BAR */
+#jump-bar-wrap{position:fixed;bottom:70px;right:80px;display:none;flex-direction:column;align-items:center;gap:2px;pointer-events:none;z-index:50;}
+#jump-label{color:rgba(150,100,255,0.7);font-size:9px;letter-spacing:2px;}
+#jump-bar-bg{width:8px;height:60px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;display:flex;flex-direction:column-reverse;border:1px solid rgba(150,100,255,0.2);}
+#jump-bar-fill{width:100%;height:0%;background:linear-gradient(0deg,#9900ff,#cc88ff);border-radius:4px;transition:height 0.05s;}
 #close-shop-btn{margin-top:24px;background:transparent;border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#555;padding:7px 24px;cursor:pointer;font-family:'Georgia',serif;font-size:11px;letter-spacing:3px;transition:color 0.2s;}
 #close-shop-btn:hover{color:#fff;}
 
-#drift-msg{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);background:rgba(255,100,0,0.12);border:1px solid rgba(255,140,0,0.45);border-radius:18px;padding:5px 20px;color:#ff9922;font-size:12px;letter-spacing:3px;pointer-events:none;z-index:50;opacity:0;transition:opacity 0.15s;font-style:italic;}
-z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#0d1520 0%,#06060e 100%);}
+#drift-msg{position:fixed;bottom:108px;left:50%;transform:translateX(-50%);background:rgba(255,100,0,0.12);border:1px solid rgba(255,140,0,0.45);border-radius:18px;padding:5px 20px;color:#ff9922;font-size:12px;letter-spacing:3px;pointer-events:none;z-index:50;opacity:0;transition:opacity 0.15s;font-style:italic;}
+#mainmenu{position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#0d1520 0%,#06060e 100%);}
 .road-tri{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:0;border-left:260px solid transparent;border-right:260px solid transparent;border-bottom:380px solid #131313;}
 .dash-line{position:absolute;left:calc(50% - 3px);width:6px;border-radius:3px;background:#ffcc00;animation:dashfall 1.2s linear infinite;}
 @keyframes dashfall{0%{opacity:0;transform:translateY(-20px);}20%{opacity:1;}80%{opacity:1;}100%{opacity:0;transform:translateY(60px);}}
 .mm-logo{font-size:74px;color:#f5e6c8;font-style:italic;font-weight:normal;letter-spacing:8px;position:relative;z-index:2;margin-bottom:5px;animation:lp 3s ease-in-out infinite;text-shadow:0 0 80px rgba(255,200,100,0.35),0 2px 0 rgba(0,0,0,0.6);}
 @keyframes lp{0%,100%{text-shadow:0 0 80px rgba(255,200,100,0.35),0 2px 0 rgba(0,0,0,0.6);}50%{text-shadow:0 0 130px rgba(255,180,80,0.65),0 0 200px rgba(255,150,50,0.2),0 2px 0 rgba(0,0,0,0.6);}}
-.mm-sub{position:relative;z-index:2;color:#1e1a14;font-size:10px;letter-spacing:8px;margin-bottom:50px;}
+.mm-sub{position:relative;z-index:2;color:#4a4438;font-size:10px;letter-spacing:8px;margin-bottom:50px;}
 .mm-btns{position:relative;z-index:2;display:flex;flex-direction:column;gap:10px;width:230px;}
 .mm-btn{background:transparent;border:1px solid rgba(255,255,255,0.09);color:#8a8070;padding:12px 0;font-size:11px;font-family:'Georgia',serif;letter-spacing:5px;cursor:pointer;border-radius:4px;transition:all 0.22s;text-align:center;width:100%;}
 .mm-btn:hover{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.22);color:#f5e6c8;}
 .mm-btn.primary{border-color:rgba(255,220,150,0.32);color:#f5e6c8;}
 .mm-btn.primary:hover{background:rgba(255,220,150,0.06);border-color:rgba(255,220,150,0.65);}
-.mm-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:#181410;font-size:9px;letter-spacing:3px;text-align:center;line-height:2.2;z-index:2;white-space:nowrap;}
-.mm-hint b{color:#222018;}
-.mm-credit{position:absolute;bottom:9px;right:14px;color:#181410;font-size:9px;letter-spacing:2px;font-style:italic;z-index:2;}
+.mm-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:#3a3228;font-size:9px;letter-spacing:3px;text-align:center;line-height:2.2;z-index:2;white-space:nowrap;}
+.mm-hint b{color:#554e42;}
+.mm-credit{position:absolute;bottom:9px;right:14px;color:#3a3228;font-size:9px;letter-spacing:2px;font-style:italic;z-index:2;}
+
+/* CODE OVERLAY */
+#code-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.94);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:320;backdrop-filter:blur(6px);}
+#code-overlay h2{color:#f5e6c8;font-size:28px;font-style:italic;letter-spacing:6px;margin-bottom:5px;}
+#code-overlay .csub2{color:#444;font-size:10px;letter-spacing:5px;margin-bottom:28px;}
+#code-input-wrap{display:flex;gap:8px;margin-bottom:14px;}
+#code-input{background:rgba(255,220,100,0.04);border:1px solid rgba(255,220,100,0.2);color:#f5e6c8;padding:10px 18px;font-family:'Courier New',monospace;font-size:16px;letter-spacing:6px;border-radius:8px;outline:none;width:240px;text-align:center;transition:border-color 0.2s;}
+#code-input:focus{border-color:rgba(255,220,100,0.5);}
+#code-input.ok{border-color:rgba(100,255,100,0.6);color:#88ff88;}
+#code-input.fail{border-color:rgba(255,60,60,0.6);color:#ff6666;}
+#code-submit{background:rgba(255,220,100,0.06);border:1px solid rgba(255,220,100,0.25);color:#ffd700;padding:10px 18px;cursor:pointer;font-family:'Georgia',serif;font-size:11px;letter-spacing:3px;border-radius:8px;transition:all 0.2s;}
+#code-submit:hover{background:rgba(255,220,100,0.12);border-color:rgba(255,220,100,0.55);}
+#code-result{min-height:24px;color:#ffd700;font-size:11px;letter-spacing:3px;margin-bottom:18px;text-align:center;}
+/* Admin menu shown after correct code */
+#admin-menu{display:none;flex-direction:column;gap:8px;width:300px;margin-bottom:22px;}
+#admin-menu .admin-title{color:#00ff64;font-size:10px;letter-spacing:4px;text-align:center;margin-bottom:4px;}
+.adm-row{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-radius:8px;background:rgba(0,255,100,0.03);border:1px solid rgba(0,255,100,0.1);cursor:pointer;transition:background 0.15s;}
+.adm-row:hover{background:rgba(0,255,100,0.07);}
+.adm-label{color:#5a9a78;font-size:10px;letter-spacing:1px;}
+.adm-tog{width:34px;height:19px;background:#0a0a0a;border:1px solid #003322;border-radius:10px;position:relative;transition:background 0.2s;flex-shrink:0;pointer-events:none;}
+.adm-tog.on{background:#008833;}.adm-tog::after{content:'';position:absolute;top:2px;left:2px;width:13px;height:13px;background:#fff;border-radius:50%;transition:left 0.2s;}.adm-tog.on::after{left:17px;}
+.adm-btn{width:100%;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.2);border-radius:8px;color:#ffd700;padding:8px;font-size:10px;letter-spacing:2px;cursor:pointer;font-family:'Georgia',serif;transition:all 0.2s;}
+.adm-btn:hover{background:rgba(255,215,0,0.1);}
+.adm-btn.green{background:rgba(100,255,100,0.04);border-color:rgba(100,255,100,0.2);color:#88ff88;}
+.adm-btn.green:hover{background:rgba(100,255,100,0.1);}
+#close-code-btn{background:transparent;border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#555;padding:7px 24px;cursor:pointer;font-family:'Georgia',serif;font-size:11px;letter-spacing:3px;transition:color 0.2s;}
+#close-code-btn:hover{color:#fff;}
+
+/* COP HIT WARNING */
+#cop-warning{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);color:#ff4400;font-size:36px;font-weight:bold;letter-spacing:6px;text-shadow:0 0 30px #ff2200,0 0 60px #ff0000;pointer-events:none;z-index:55;display:none;font-style:italic;}
 </style>
 </head>
 <body>
@@ -137,9 +226,27 @@ z-index:300;display:flex;flex-direction:column;align-items:center;justify-conten
 </div>
 <div id="chase-msg">⚠ WANTED ⚠</div>
 <div id="drift-msg">🔥 DRIFTING</div>
+<div id="turbo-bar-wrap">
+  <div id="turbo-label">⚡ TURBO</div>
+  <div id="turbo-bar-bg"><div id="turbo-bar-fill"></div></div>
+  <div id="turbo-ready">READY — HOLD SHIFT</div>
+</div>
 
 <button id="shop-btn" onclick="openShop()">🛒 Shop</button>
-<div id="esc-hint">ESC — menu &nbsp;•&nbsp; SPACE — drift</div>
+<div id="esc-hint">ESC — menu &nbsp;•&nbsp; SPACE — drift &nbsp;•&nbsp; SHIFT — turbo &nbsp;•&nbsp; E — power</div>
+
+<div id="power-hud">
+  <div id="power-icon">⚡</div>
+  <div id="power-name">POWER</div>
+  <div id="power-cd-bar"><div id="power-cd-fill"></div></div>
+  <div id="power-key">[ E ]</div>
+</div>
+<div id="power-active-msg"></div>
+
+<div id="jump-bar-wrap">
+  <div id="jump-bar-bg"><div id="jump-bar-fill"></div></div>
+  <div id="jump-label">▲</div>
+</div>
 
 <div id="panel-toggle" onclick="togglePanel()">☰</div>
 <div id="panel">
@@ -209,6 +316,7 @@ z-index:300;display:flex;flex-direction:column;align-items:center;justify-conten
   <div class="p-btns">
     <button class="p-btn primary" onclick="resumeGame()">▶ &nbsp; RESUME</button>
     <button class="p-btn" onclick="closePause();openShop()">🛒 &nbsp; CAR SHOP</button>
+    <button class="p-btn" onclick="closePause();openMissions()">📋 &nbsp; MISSIONS</button>
     <button class="p-btn" onclick="backToMenu()">⏎ &nbsp; MAIN MENU</button>
   </div>
 </div>
@@ -217,8 +325,69 @@ z-index:300;display:flex;flex-direction:column;align-items:center;justify-conten
   <h2>Car Shop</h2>
   <p class="ssub">spend your coins. drive faster.</p>
   <div id="car-grid"></div>
-  <button id="close-shop-btn" onclick="closeShop()">back to driving</button>
+  <button id="close-shop-btn" onclick="closeShopSmart()">back</button>
 </div>
+
+<!-- HELP OVERLAY -->
+<div id="help-overlay">
+  <h2>Controls</h2>
+  <p class="hsub">how to play</p>
+  <div class="help-grid">
+    <div class="help-row"><span class="hkey">W / ↑</span><span class="hdesc">Accelerate</span></div>
+    <div class="help-row"><span class="hkey">S / ↓</span><span class="hdesc">Brake / Reverse</span></div>
+    <div class="help-row"><span class="hkey">A / ←</span><span class="hdesc">Turn Left</span></div>
+    <div class="help-row"><span class="hkey">D / →</span><span class="hdesc">Turn Right</span></div>
+    <div class="help-row"><span class="hkey">SPACE</span><span class="hdesc">Drift</span></div>
+    <div class="help-row"><span class="hkey">SHIFT</span><span class="hdesc">Turbo boost</span></div>
+    <div class="help-row"><span class="hkey">⚡ Nitro</span><span class="hdesc">Drive over pads</span></div>
+    <div class="help-row"><span class="hkey">C</span><span class="hdesc">Switch Camera</span></div>
+    <div class="help-row"><span class="hkey">ESC</span><span class="hdesc">Pause Menu</span></div>
+    <div class="help-row"><span class="hkey">🪙 Coins</span><span class="hdesc">Collect on roads</span></div>
+    <div class="help-row"><span class="hkey">🔥 Drift</span><span class="hdesc">Long drifts = coins</span></div>
+    <div class="help-row"><span class="hkey">🚨 Cops</span><span class="hdesc">Don't get caught!</span></div>
+  </div>
+  <button id="close-help-btn" onclick="closeHelp()">got it</button>
+</div>
+
+<!-- MISSIONS OVERLAY -->
+<div id="missions-overlay">
+  <h2>Missions</h2>
+  <p class="msub">complete for coins</p>
+  <div id="mission-list"></div>
+  <button id="close-missions-btn" onclick="closeMissions()">back</button>
+</div>
+
+<!-- MISSION HUD (in-game) -->
+<div id="mission-hud">
+  <div class="mh-title">MISSION</div>
+  <div class="mh-name" id="mh-name">—</div>
+  <div class="mh-prog" id="mh-prog"></div>
+</div>
+
+<!-- CODE OVERLAY -->
+<div id="code-overlay">
+  <h2>Admin Code</h2>
+  <p class="csub2">enter the admin code to unlock options</p>
+  <div id="code-input-wrap">
+    <input id="code-input" type="password" placeholder="••••••••" maxlength="16" autocomplete="off"
+      onkeydown="if(event.key==='Enter')submitCode()">
+    <button id="code-submit" onclick="submitCode()">ENTER</button>
+  </div>
+  <div id="code-result"></div>
+  <div id="admin-menu">
+    <div class="admin-title">⚙ ADMIN OPTIONS</div>
+    <div class="adm-row" onclick="admToggle('speed')"><span class="adm-label">🚀 Speed Uncap</span><div class="adm-tog" id="adm-speed"></div></div>
+    <div class="adm-row" onclick="admToggle('noclip')"><span class="adm-label">👻 Noclip</span><div class="adm-tog" id="adm-noclip"></div></div>
+    <div class="adm-row" onclick="admToggle('nocops')"><span class="adm-label">🙈 No Cops</span><div class="adm-tog" id="adm-nocops"></div></div>
+    <div class="adm-row" onclick="admToggle('chase')"><span class="adm-label">🚨 Force Chase</span><div class="adm-tog" id="adm-chase"></div></div>
+    <button class="adm-btn" onclick="admGiveCoins()">🪙 Give 999 Coins</button>
+    <button class="adm-btn green" onclick="admUnlockAll()">🔓 Unlock All Cars</button>
+  </div>
+  <button id="close-code-btn" onclick="closeCode()">back</button>
+</div>
+
+<!-- COP HIT WARNING -->
+<div id="cop-warning"></div>
 
 <div id="mainmenu">
   <div class="road-tri"></div>
@@ -231,19 +400,23 @@ z-index:300;display:flex;flex-direction:column;align-items:center;justify-conten
   <div class="mm-btns">
     <button class="mm-btn primary" onclick="startGame()">▶ &nbsp; PLAY</button>
     <button class="mm-btn" onclick="openShopFromMenu()">🛒 &nbsp; CAR SHOP</button>
+    <button class="mm-btn" onclick="openMissionsFromMenu()">📋 &nbsp; MISSIONS</button>
+    <button class="mm-btn" onclick="openHelp()">❓ &nbsp; HOW TO PLAY</button>
+    <button class="mm-btn" onclick="openCode()">🔑 &nbsp; ENTER CODE</button>
   </div>
   <div class="mm-hint">
-    <b>W/↑</b> gas &nbsp;•&nbsp; <b>S/↓</b> brake &nbsp;•&nbsp; <b>A/D</b> steer &nbsp;•&nbsp; <b>SPACE</b> drift &nbsp;•&nbsp; <b>C</b> cam &nbsp;•&nbsp; <b>ESC</b> menu
+    <b>W/↑</b> gas &nbsp;•&nbsp; <b>S/↓</b> brake &nbsp;•&nbsp; <b>A/D</b> steer &nbsp;•&nbsp; <b>SPACE</b> drift &nbsp;•&nbsp; <b>C</b> cam &nbsp;•&nbsp; <b>ESC</b> pause
   </div>
+  <div class="mm-credit">made by zaydon</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 // ══════════════════════════════════════════════════════
-// AUDIO ENGINE — much less annoying sounds
+// AUDIO ENGINE
 // ══════════════════════════════════════════════════════
 let audioCtx = null;
-let engineGain = null, engineOsc = null;
+let engineNodes = null;
 let audioStarted = false;
 
 function initAudio() {
@@ -251,52 +424,68 @@ function initAudio() {
   audioStarted = true;
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-  engineGain = audioCtx.createGain();
-  engineGain.gain.value = 0;
+  const master = audioCtx.createGain();
+  master.gain.value = 0.18;
+  master.connect(audioCtx.destination);
 
-  // Low-pass filter to keep it mellow
+  const engGain = audioCtx.createGain();
+  engGain.gain.value = 0;
   const lpf = audioCtx.createBiquadFilter();
-  lpf.type = 'lowpass';
-  lpf.frequency.value = 400;
-  lpf.Q.value = 0.5;
+  lpf.type = 'lowpass'; lpf.frequency.value = 320; lpf.Q.value = 0.7;
+  engGain.connect(lpf); lpf.connect(master);
 
-  const osc = audioCtx.createOscillator();
-  osc.type = 'sine';
-  osc.frequency.value = 60;
+  const o1 = audioCtx.createOscillator(); o1.type = 'sine'; o1.frequency.value = 68;
+  const o2 = audioCtx.createOscillator(); o2.type = 'sine'; o2.frequency.value = 71;
+  const o3 = audioCtx.createOscillator(); o3.type = 'triangle'; o3.frequency.value = 136;
+  const g1 = audioCtx.createGain(); g1.gain.value = 0.6;
+  const g2 = audioCtx.createGain(); g2.gain.value = 0.4;
+  const g3 = audioCtx.createGain(); g3.gain.value = 0.2;
+  o1.connect(g1); o2.connect(g2); o3.connect(g3);
+  g1.connect(engGain); g2.connect(engGain); g3.connect(engGain);
+  o1.start(); o2.start(); o3.start();
 
-  // Subtle noise for realism
-  const bufSize = audioCtx.sampleRate * 2;
-  const noiseBuf = audioCtx.createBuffer(1, bufSize, audioCtx.sampleRate);
-  const nd = noiseBuf.getChannelData(0);
-  for (let i = 0; i < bufSize; i++) nd[i] = Math.random() * 2 - 1;
-  const noiseSrc = audioCtx.createBufferSource();
-  noiseSrc.buffer = noiseBuf; noiseSrc.loop = true;
-  const noiseFilter = audioCtx.createBiquadFilter();
-  noiseFilter.type = 'bandpass';
-  noiseFilter.frequency.value = 300;
-  noiseFilter.Q.value = 2;
-  const noiseGain = audioCtx.createGain();
-  noiseGain.gain.value = 0;
+  const sqBuf = audioCtx.createBuffer(1, audioCtx.sampleRate * 2, audioCtx.sampleRate);
+  const sqData = sqBuf.getChannelData(0);
+  for (let i = 0; i < sqData.length; i++) sqData[i] = Math.random() * 2 - 1;
+  const sqSrc = audioCtx.createBufferSource(); sqSrc.buffer = sqBuf; sqSrc.loop = true;
+  const sqFilt = audioCtx.createBiquadFilter(); sqFilt.type = 'bandpass';
+  sqFilt.frequency.value = 900; sqFilt.Q.value = 3;
+  const sqGain = audioCtx.createGain(); sqGain.gain.value = 0;
+  sqSrc.connect(sqFilt); sqFilt.connect(sqGain); sqGain.connect(master);
+  sqSrc.start();
 
-  osc.connect(lpf);
-  lpf.connect(engineGain);
-  noiseSrc.connect(noiseFilter);
-  noiseFilter.connect(noiseGain);
-  noiseGain.connect(engineGain);
-  engineGain.connect(audioCtx.destination);
+  const wBuf = audioCtx.createBuffer(1, audioCtx.sampleRate * 2, audioCtx.sampleRate);
+  const wData = wBuf.getChannelData(0);
+  for (let i = 0; i < wData.length; i++) wData[i] = Math.random() * 2 - 1;
+  const wSrc = audioCtx.createBufferSource(); wSrc.buffer = wBuf; wSrc.loop = true;
+  const wFilt = audioCtx.createBiquadFilter(); wFilt.type = 'highpass';
+  wFilt.frequency.value = 2200; wFilt.Q.value = 0.5;
+  const wGain = audioCtx.createGain(); wGain.gain.value = 0;
+  wSrc.connect(wFilt); wFilt.connect(wGain); wGain.connect(master);
+  wSrc.start();
 
-  osc.start(); noiseSrc.start();
-  engineOsc = { osc, noiseGain };
+  engineNodes = { o1, o2, o3, engGain, sqGain, wGain };
 }
 
-function updateEngineAudio(speedFraction) {
-  if (!audioCtx || !engineOsc) return;
+function updateEngineAudio(speedFraction, isDrifting) {
+  if (!audioCtx || !engineNodes) return;
   const spd = Math.max(0, Math.min(1, Math.abs(speedFraction)));
   const t = audioCtx.currentTime;
-  // Gentle hum that rises with speed — max volume 0.06 (quiet)
-  engineOsc.osc.frequency.setTargetAtTime(55 + spd * 90, t, 0.15);
-  engineGain.gain.setTargetAtTime(spd > 0.02 ? 0.025 + spd * 0.04 : 0, t, 0.2);
-  engineOsc.noiseGain.gain.setTargetAtTime(spd * 0.012, t, 0.2);
+
+  const gearRanges = [[60,100],[95,140],[130,175],[165,210]];
+  const gear = spd < 0.25 ? 0 : spd < 0.5 ? 1 : spd < 0.75 ? 2 : 3;
+  const gearPos = spd < 0.25 ? spd/0.25 : spd < 0.5 ? (spd-0.25)/0.25 : spd < 0.75 ? (spd-0.5)/0.25 : (spd-0.75)/0.25;
+  const [fLow, fHigh] = gearRanges[gear];
+  const baseFreq = fLow + gearPos * (fHigh - fLow);
+
+  engineNodes.o1.frequency.setTargetAtTime(baseFreq, t, 0.08);
+  engineNodes.o2.frequency.setTargetAtTime(baseFreq * 1.04, t, 0.08);
+  engineNodes.o3.frequency.setTargetAtTime(baseFreq * 2, t, 0.08);
+
+  const vol = spd > 0.02 ? 0.15 + spd * 0.55 : 0;
+  engineNodes.engGain.gain.setTargetAtTime(vol, t, 0.1);
+  engineNodes.sqGain.gain.setTargetAtTime(isDrifting ? 0.35 + spd * 0.3 : 0, t, 0.08);
+  engineNodes.wGain.gain.setTargetAtTime(spd > 0.5 ? (spd - 0.5) * 0.6 : 0, t, 0.15);
 }
 
 function playCoinSound() {
@@ -475,6 +664,51 @@ for(let i=0;i<=GRID;i++){
 (()=>{const geo=new THREE.BufferGeometry(),v=[];for(let i=0;i<2000;i++)v.push((Math.random()-.5)*600,80+Math.random()*200,(Math.random()-.5)*600);geo.setAttribute('position',new THREE.Float32BufferAttribute(v,3));scene.add(new THREE.Points(geo,new THREE.PointsMaterial({color:0xffffff,size:.35})));})();
 
 // ══════════════════════════════════════════════════════
+// MAP BOUNDARY BARRIERS
+// ══════════════════════════════════════════════════════
+(()=>{
+  const B = HALF + ROAD/2 + 3; // barrier position
+  const L = (HALF + ROAD/2 + 3) * 2 + 6; // wall length
+  const H = 1.8, D = 1.2; // height, depth
+
+  // Concrete barrier material with stripe accent
+  const concMat = new THREE.MeshStandardMaterial({color:0xccbbaa,roughness:.9,metalness:.0});
+  const stripeMat = new THREE.MeshStandardMaterial({color:0xff8800,emissive:0xff6600,emissiveIntensity:.35,roughness:.8});
+
+  function makeWall(x,z,rotY){
+    const g = new THREE.Group();
+
+    // Main concrete slab
+    const wall = new THREE.Mesh(new THREE.BoxGeometry(L, H, D), concMat);
+    wall.castShadow = true; wall.receiveShadow = true;
+    g.add(wall);
+
+    // Diagonal hazard stripes along the top
+    const stripeCount = Math.floor(L / 10);
+    for(let i = 0; i < stripeCount; i++){
+      const s = new THREE.Mesh(new THREE.BoxGeometry(3, 0.12, D + 0.02), stripeMat);
+      s.position.set(-L/2 + 5 + i * 10, H/2, 0);
+      s.rotation.y = 0.4;
+      g.add(s);
+    }
+
+    // Top cap strip
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(L, 0.15, D + 0.1),
+      new THREE.MeshStandardMaterial({color:0xddccbb,roughness:.85}));
+    cap.position.y = H/2 + 0.07; g.add(cap);
+
+    g.position.set(x, H/2, z);
+    g.rotation.y = rotY;
+    scene.add(g);
+  }
+
+  makeWall( 0,  B, 0);          // North
+  makeWall( 0, -B, 0);          // South
+  makeWall( B,  0, Math.PI/2);  // East
+  makeWall(-B,  0, Math.PI/2);  // West
+})();
+
+// ══════════════════════════════════════════════════════
 // CAR BUILDER
 // ══════════════════════════════════════════════════════
 function buildCar(color,type){
@@ -525,10 +759,36 @@ function buildCar(color,type){
 // CAR CATALOG
 // ══════════════════════════════════════════════════════
 const CARS=[
-  {id:0,name:'Cruiser',    emoji:'🚗',type:'sedan', color:0xe8c84a,mph:50, price:0},
-  {id:1,name:'Sport S',   emoji:'🏎️',type:'sport', color:0xff3311,mph:100,price:15},
-  {id:2,name:'Muscle V8', emoji:'💪',type:'muscle',color:0x2244ee,mph:150,price:40},
-  {id:3,name:'Hyperion X',emoji:'⚡',type:'super', color:0x00ffcc,mph:200,price:80},
+  {id:0, name:'Cruiser',     emoji:'🚗',  type:'sedan',  color:0xe8c84a, mph:50,  price:0,
+   desc:'Your trusty starter. Nothing fancy.',
+   power:null},
+  {id:1, name:'Sport S',    emoji:'🏎️',  type:'sport',  color:0xff3311, mph:100, price:15,
+   desc:'Quick off the line. Tight cornering.',
+   power:{key:'E',name:'Quick Burst',icon:'💨',desc:'Short speed burst. 3s cooldown.',cd:3}},
+  {id:2, name:'Night Hawk', emoji:'🖤',  type:'sedan',  color:0x222233, mph:80,  price:20,
+   desc:'Stealth tech. Cops lose sight easier.',
+   power:{key:'E',name:'Ghost Mode',icon:'👁️',desc:'Go invisible to cops for 5s. 15s cooldown.',cd:15}},
+  {id:3, name:'Goldie',     emoji:'✨',  type:'muscle', color:0xffd700, mph:120, price:30,
+   desc:'Flashy ride. Attracts coin drops.',
+   power:{key:'E',name:'Coin Magnet',icon:'🧲',desc:'Sucks nearby coins in for 4s. 10s cooldown.',cd:10}},
+  {id:4, name:'Muscle V8',  emoji:'💪',  type:'muscle', color:0x2244ee, mph:150, price:40,
+   desc:'Raw power. Rams through traffic.',
+   power:{key:'E',name:'Ram',icon:'💥',desc:'Slam forward. Cops sent flying. 8s cooldown.',cd:8}},
+  {id:5, name:'Ghost',      emoji:'👻',  type:'sport',  color:0xeeeeff, mph:160, price:55,
+   desc:'Lightweight. Near-silent engine.',
+   power:{key:'E',name:'Phase',icon:'🌀',desc:'Pass through buildings for 3s. 20s cooldown.',cd:20}},
+  {id:6, name:'Inferno',    emoji:'🔥',  type:'super',  color:0xff4400, mph:180, price:65,
+   desc:'Scorching hot. Leaves fire trails.',
+   power:{key:'E',name:'Afterburn',icon:'🔥',desc:'Massive speed + fire trail for 4s. 12s cooldown.',cd:12}},
+  {id:7, name:'Hyperion X', emoji:'⚡',  type:'super',  color:0x00ffcc, mph:200, price:80,
+   desc:'Electric hypercar. Instant torque.',
+   power:{key:'E',name:'EMP Pulse',icon:'⚡',desc:'Stuns all nearby cops for 6s. 18s cooldown.',cd:18}},
+  {id:8, name:'Phantom',    emoji:'💜',  type:'super',  color:0x9900ff, mph:220, price:110,
+   desc:'Prototype. Can jump with E.',
+   power:{key:'E',name:'Jump',icon:'🦘',desc:'Launch the car into the air! 5s cooldown.',cd:5,isJump:true}},
+  {id:9, name:'Big Earl',   emoji:'🚌',  type:'bus',    color:0xddaa22, mph:60,  price:25,
+   desc:'Massive. Unstoppable. Sends cops flying.',
+   power:{key:'E',name:'Honk Blast',icon:'📯',desc:'Shockwave horn. Blasts everything nearby. 6s cooldown.',cd:6}},
 ];
 function mphToV(mph){return(mph/50)*.14;}
 
@@ -554,27 +814,45 @@ function renderShopUI(){
     if(active)btn=`<button class="cbtn cur">✓ driving</button>`;
     else if(owned)btn=`<button class="cbtn drive" onclick="event.stopPropagation();selectCar(${car.id})">drive this</button>`;
     else if(coins>=car.price)btn=`<button class="cbtn buy" onclick="event.stopPropagation();buyCar(${car.id})">🪙 ${car.price} buy</button>`;
-    else btn=`<button class="cbtn lock">🪙 ${car.price} (need ${car.price-coins})</button>`;
-    d.innerHTML=`<div class="cc-icon">${car.emoji}</div><div class="cc-name">${car.name}</div><div class="cc-mph">${car.mph} mph top</div>${btn}`;
+    else btn=`<button class="cbtn lock">🪙 ${car.price}</button>`;
+    const powerHTML = car.power
+      ? `<div class="cc-power"><span class="cc-picon">${car.power.icon}</span><span class="cc-pname">${car.power.name}</span><span class="cc-pdesc">${car.power.desc}</span><span class="cc-pdesc" style="color:#665500;margin-top:3px;">[ E ] to activate</span></div>`
+      : `<div class="cc-power cc-nopow">No special power</div>`;
+    d.innerHTML=`<div class="cc-icon">${car.emoji}</div><div class="cc-name">${car.name}</div><div class="cc-mph">${car.mph} mph</div>${powerHTML}${btn}`;
     if(owned&&!active) d.onclick=()=>selectCar(car.id);
     else if(!owned) d.onclick=()=>buyCar(car.id);
     el.appendChild(d);
   });
 }
-function buyCar(id){const c=CARS[id];if(coins<c.price)return;coins-=c.price;updateCoinsUI();ownedCars.add(id);selectCar(id);}
+function buyCar(id){const c=CARS[id];if(coins<c.price)return;coins-=c.price;updateCoinsUI();ownedCars.add(id);selectCar(id);updateMission('owncars',0);}
 function selectCar(id){activeCar=id;pSpeed=0;const px=playerMesh.position.x,pz=playerMesh.position.z,pa=pAngle;spawnPlayer(px,pz,pa);renderShopUI();}
 
 // ══════════════════════════════════════════════════════
 // DEV
 // ══════════════════════════════════════════════════════
 const dev={unlocked:false,speed:false,noclip:false,nocops:false,chase:false};
+function unlockDev(){
+  dev.unlocked=true;
+  // Unlock in-game dev panel
+  document.getElementById('dev-tools').style.display='block';
+  document.getElementById('dev-lock').style.display='none';
+  const inp=document.getElementById('dev-input');
+  if(inp){inp.value='';inp.placeholder='✓ unlocked';inp.style.borderColor='rgba(0,255,100,.35)';inp.style.color='#00ff64';}
+  syncAllToggles();
+}
+function syncAllToggles(){
+  // Sync both the in-game panel toggles AND the menu admin toggles
+  ['speed','noclip','nocops','chase'].forEach(k=>{
+    const tog=document.getElementById('tog-'+k);
+    if(tog) tog.className='tog'+(dev[k]?' on':'');
+    const adm=document.getElementById('adm-'+k);
+    if(adm) adm.className='adm-tog'+(dev[k]?' on':'');
+  });
+}
 function checkDevCode(){
   const inp=document.getElementById('dev-input');
   if(inp.value==='admin21'){
-    dev.unlocked=true;inp.value='';inp.placeholder='✓ unlocked';
-    inp.style.borderColor='rgba(0,255,100,.35)';inp.style.color='#00ff64';
-    document.getElementById('dev-tools').style.display='block';
-    document.getElementById('dev-lock').style.display='none';
+    unlockDev();
   } else {
     inp.style.borderColor='rgba(255,0,0,.35)';inp.value='';
     setTimeout(()=>{inp.style.borderColor='';inp.placeholder='enter code...';},700);
@@ -582,12 +860,146 @@ function checkDevCode(){
 }
 function toggleDev(k){
   dev[k]=!dev[k];
-  document.getElementById('tog-'+k).className='tog'+(dev[k]?' on':'');
+  syncAllToggles();
   if(k==='nocops')applyNoCops();
   if(k==='chase'&&dev[k])triggerChase(60);
 }
 function applyNoCops(){npcs.forEach(n=>{if(!n.isCop)return;n.mesh.visible=!dev.nocops;n.hidden=dev.nocops;});if(dev.nocops){endChase();}}
 function giveCoins(){coins+=999;updateCoinsUI();flashMsg('+999 coins! 💰');}
+
+// ══════════════════════════════════════════════════════
+// MISSIONS
+// ══════════════════════════════════════════════════════
+const MISSIONS = [
+  {id:'coins10',   name:'Coin Collector',  desc:'Collect 10 coins',          reward:5,  type:'coins',   target:10,  progress:0, done:false},
+  {id:'coins30',   name:'Money Bags',      desc:'Collect 30 coins',          reward:12, type:'coins',   target:30,  progress:0, done:false},
+  {id:'drift5',    name:'Slide King',      desc:'Complete 5 drifts',         reward:8,  type:'drifts',  target:5,   progress:0, done:false},
+  {id:'drift15',   name:'Drift God',       desc:'Complete 15 drifts',        reward:20, type:'drifts',  target:15,  progress:0, done:false},
+  {id:'speed100',  name:'Speed Demon',     desc:'Hit 100 mph',               reward:10, type:'speed',   target:100, progress:0, done:false},
+  {id:'speed150',  name:'Untouchable',     desc:'Hit 150 mph',               reward:25, type:'speed',   target:150, progress:0, done:false},
+  {id:'escape',    name:'Ghost',           desc:'Escape a police chase',     reward:15, type:'escape',  target:1,   progress:0, done:false},
+  {id:'escape3',   name:'Outlaw',          desc:'Escape 3 police chases',    reward:30, type:'escape',  target:3,   progress:0, done:false},
+  {id:'cars3',     name:'Car Collector',   desc:'Own 3 cars',                reward:10, type:'owncars', target:3,   progress:0, done:false},
+  {id:'hitcop',    name:'Road Rage',       desc:'Crash into a cop',          reward:8,  type:'hitcop',  target:1,   progress:0, done:false},
+  {id:'survive30', name:'Survivor',        desc:'Survive 30s of a chase',    reward:20, type:'survive', target:30,  progress:0, done:false},
+  {id:'survive3x', name:'Untouchable II',  desc:'Escape 5 police chases',    reward:40, type:'escape',  target:5,   progress:0, done:false},
+];
+let driftCoinsTotal = 0;
+let driftCount = 0;
+
+function updateMission(type, value){
+  MISSIONS.forEach(m=>{
+    if(m.done) return;
+    if(m.type===type){
+      if(type==='speed') m.progress = Math.max(m.progress, value);
+      else if(type==='coins') m.progress = Math.min(coins, m.target);
+      else if(type==='owncars') m.progress = Math.min(ownedCars.size, m.target);
+      else if(type==='survive') m.progress = Math.max(m.progress, value);
+      else m.progress = Math.min(m.progress + value, m.target);
+      if(m.progress >= m.target && !m.done){
+        m.done = true;
+        coins += m.reward;
+        updateCoinsUI();
+        flashMsg('✅ MISSION DONE: +'+m.reward+' coins!');
+        playCoinSound();
+      }
+    }
+  });
+  updateMissionHUD();
+}
+
+function updateMissionHUD(){
+  const active = MISSIONS.find(m=>!m.done);
+  if(!active || !running){ document.getElementById('mission-hud').style.display='none'; return; }
+  document.getElementById('mission-hud').style.display='block';
+  document.getElementById('mh-name').textContent = active.name;
+  document.getElementById('mh-prog').textContent = active.desc+' ('+active.progress+'/'+active.target+') 🪙'+active.reward;
+}
+
+function renderMissions(){
+  const el = document.getElementById('mission-list'); el.innerHTML='';
+  MISSIONS.forEach(m=>{
+    const pct = Math.round(Math.min(m.progress/m.target,1)*100);
+    el.innerHTML+=`<div class="mission-card${m.done?' done':''}">
+      <div class="mc-left">
+        <div class="mc-name">${m.done?'✅ ':''} ${m.name}</div>
+        <div class="mc-desc">${m.desc}</div>
+        ${!m.done?`<div class="mc-prog"><div class="mc-bar" style="width:${pct}%"></div></div>`:''}
+      </div>
+      <div class="${m.done?'mc-done':'mc-reward'}">${m.done?'✓':('🪙 +'+m.reward)}</div>
+    </div>`;
+  });
+}
+
+function openHelp(){ document.getElementById('help-overlay').style.display='flex'; }
+function closeHelp(){ document.getElementById('help-overlay').style.display='none'; }
+function openMissions(){ renderMissions(); document.getElementById('missions-overlay').style.display='flex'; }
+// FIX: closeMissions restores main menu if not in-game
+function closeMissions(){
+  document.getElementById('missions-overlay').style.display='none';
+  if(!running) document.getElementById('mainmenu').style.display='flex';
+}
+// FIX: openMissionsFromMenu hides main menu before opening overlay
+function openMissionsFromMenu(){
+  document.getElementById('mainmenu').style.display='none';
+  openMissions();
+}
+function closeShopSmart(){
+  document.getElementById('shop-overlay').style.display='none';
+  if(!running) document.getElementById('mainmenu').style.display='flex';
+}
+
+// ══════════════════════════════════════════════════════
+// ADMIN CODE SYSTEM
+// ══════════════════════════════════════════════════════
+let adminUnlocked = false;
+
+function openCode(){
+  document.getElementById('mainmenu').style.display='none';
+  document.getElementById('code-overlay').style.display='flex';
+  document.getElementById('code-input').value='';
+  document.getElementById('code-result').textContent='';
+  document.getElementById('code-input').className='';
+  if(adminUnlocked){ document.getElementById('admin-menu').style.display='flex'; document.getElementById('code-input-wrap').style.display='none'; }
+  else { document.getElementById('admin-menu').style.display='none'; document.getElementById('code-input-wrap').style.display='flex'; }
+  refreshAdmToggles();
+  setTimeout(()=>{ if(!adminUnlocked) document.getElementById('code-input').focus(); },80);
+}
+function closeCode(){
+  document.getElementById('code-overlay').style.display='none';
+  if(!running) document.getElementById('mainmenu').style.display='flex';
+}
+function submitCode(){
+  const inp=document.getElementById('code-input');
+  const raw=inp.value.trim();
+  const res=document.getElementById('code-result');
+  inp.className='';
+  if(!raw){ res.textContent='enter the code first'; return; }
+  if(raw==='admin21'){
+    adminUnlocked=true;
+    unlockDev(); // also unlocks in-game dev panel
+    inp.className='ok'; res.style.color='#00ff64'; res.textContent='✓ ADMIN UNLOCKED';
+    setTimeout(()=>{
+      document.getElementById('code-input-wrap').style.display='none';
+      document.getElementById('admin-menu').style.display='flex';
+      res.textContent=''; inp.className='';
+      syncAllToggles();
+    },700);
+  } else {
+    inp.className='fail'; res.style.color='#ff5555'; res.textContent='✗ wrong code';
+    setTimeout(()=>{ inp.className=''; inp.value=''; res.textContent=''; res.style.color='#ffd700'; },900);
+  }
+}
+function refreshAdmToggles(){ syncAllToggles(); }
+function admToggle(k){
+  toggleDev(k); // delegate — toggleDev already calls syncAllToggles
+}
+function admGiveCoins(){ coins+=999; updateCoinsUI(); flashMsg('+999 coins! 💰'); }
+function admUnlockAll(){
+  CARS.forEach(c=>ownedCars.add(c.id));
+  flashMsg('🔓 ALL CARS UNLOCKED!');
+  if(running) renderShopUI();
+}
 
 // ══════════════════════════════════════════════════════
 // COINS
@@ -606,7 +1018,61 @@ function flashMsg(txt){const el=document.getElementById('pmsg');el.textContent=t
 function updateCoinsUI(){document.getElementById('hcoins').textContent=coins;document.getElementById('p-coins').textContent=coins;}
 function checkCoins(){
   const px=playerMesh.position.x,pz=playerMesh.position.z;
-  coinState.forEach((cs,i)=>{if(!cs.active)return;const dx=px-cs.x,dz=pz-cs.z;if(dx*dx+dz*dz<5){cs.active=false;coinMeshes[i].visible=false;coins++;updateCoinsUI();flashMsg('+1 coin! 🪙');playCoinSound();}});
+  coinState.forEach((cs,i)=>{if(!cs.active)return;const dx=px-cs.x,dz=pz-cs.z;if(dx*dx+dz*dz<5){cs.active=false;coinMeshes[i].visible=false;coins++;updateCoinsUI();flashMsg('+1 coin! 🪙');playCoinSound();updateMission('coins',coins);}});
+}
+
+// FIX: Declare nitroPads/nitroPadState BEFORE the IIFE that populates them
+// (was previously declared in INPUT+PHYSICS section, AFTER this IIFE — caused ReferenceError)
+const nitroPads=[], nitroPadState=[];
+
+// ── NITRO PADS (like Rocket League boost pads) ──
+(()=>{
+  const padPositions=[];
+  for(let i=0;i<=GRID;i+=1){
+    const r=i*CELL-HALF;
+    for(let j=0;j<=GRID;j+=1){
+      const r2=j*CELL-HALF;
+      padPositions.push([r,r2]);
+    }
+  }
+  for(let i=0;i<=GRID;i++){
+    const r=i*CELL-HALF;
+    for(let j=0;j<GRID;j++){
+      padPositions.push([r, j*CELL-HALF+CELL/2]);
+      padPositions.push([j*CELL-HALF+CELL/2, r]);
+    }
+  }
+  padPositions.sort(()=>Math.random()-.5);
+  const chosen=padPositions.slice(0,22);
+  const padGeo=new THREE.CylinderGeometry(1.4,1.4,.08,16);
+  const padMat=new THREE.MeshStandardMaterial({color:0x00aaff,emissive:0x0066ff,emissiveIntensity:1.5,metalness:.5,roughness:.2,transparent:true,opacity:.85});
+  const innerGeo=new THREE.CylinderGeometry(.6,.6,.1,12);
+  const innerMat=new THREE.MeshStandardMaterial({color:0xffffff,emissive:0x88ddff,emissiveIntensity:2});
+  chosen.forEach(([px,pz])=>{
+    const g=new THREE.Group();
+    const outer=new THREE.Mesh(padGeo,padMat.clone());
+    const inner=new THREE.Mesh(innerGeo,innerMat.clone());
+    g.add(outer); g.add(inner);
+    g.position.set(px,.05,pz); scene.add(g);
+    nitroPads.push(g);
+    nitroPadState.push({x:px,z:pz,active:true,respawn:0});
+  });
+})();
+
+function checkNitroPads(){
+  const px=playerMesh.position.x,pz=playerMesh.position.z;
+  const now=performance.now();
+  nitroPadState.forEach((ps,i)=>{
+    if(!ps.active&&now>ps.respawn){ps.active=true;nitroPads[i].visible=true;}
+    if(!ps.active)return;
+    const dx=px-ps.x,dz=pz-ps.z;
+    if(dx*dx+dz*dz<6){
+      ps.active=false; ps.respawn=now+8000;
+      nitroPads[i].visible=false;
+      turboFuel=Math.min(turboMax,turboFuel+40);
+      flashMsg('⚡ NITRO +40!');
+    }
+  });
 }
 
 // ══════════════════════════════════════════════════════
@@ -620,14 +1086,19 @@ function triggerChase(duration){
   document.getElementById('wanted-bar').style.display='flex';
   document.getElementById('chase-msg').style.display='block';
   updateWantedStars();
+  setTimeout(spawnHelicopter, 3000);
 }
 function endChase(){
+  if(chasing) updateMission('escape', 1);
   chasing=false; chaseTimeLeft=0;
+  copHitPending=false; copHitTimer=0;
+  document.getElementById('cop-warning').style.display='none';
   document.getElementById('wanted-bar').style.display='none';
   document.getElementById('chase-msg').style.display='none';
   document.getElementById('chase-timer-display').textContent='';
   npcs.forEach(n=>{if(n.isCop){n.chasing=false;}});
   document.getElementById('p-wanted').textContent='none';
+  removeHelicopter();
 }
 function updateWantedStars(){
   const lvl=chaseTimeLeft>40?3:chaseTimeLeft>20?2:chaseTimeLeft>0?1:0;
@@ -641,7 +1112,6 @@ function getBusted(){
   paused=true;
   pSpeed=0;
   playBustedSound();
-  // Fine player coins
   const fine=Math.min(10,coins);
   coins=Math.max(0,coins-fine);
   updateCoinsUI();
@@ -652,8 +1122,9 @@ function getBusted(){
 function continueAfterCaught(){
   caught=false;
   paused=false;
+  copHitPending=false; copHitTimer=0;
+  document.getElementById('cop-warning').style.display='none';
   document.getElementById('caught-screen').style.display='none';
-  // Respawn on road
   pSpeed=0; pSteer=0;
   playerMesh.position.set(SPAWN_X, 0, SPAWN_Z);
   pAngle=0; playerMesh.rotation.y=0;
@@ -670,15 +1141,185 @@ function backToMenuFromCaught(){
 }
 
 // ══════════════════════════════════════════════════════
-// NPCs — cops now follow roads and avoid buildings
+// POWERUP SYSTEM + HELICOPTER
+// ══════════════════════════════════════════════════════
+
+function buildHelicopter(){
+  const g=new THREE.Group();
+  const body=new THREE.Mesh(new THREE.BoxGeometry(2.5,1,1.2),new THREE.MeshStandardMaterial({color:0x223344,metalness:.6,roughness:.3}));
+  g.add(body);
+  const nose=new THREE.Mesh(new THREE.ConeGeometry(.5,1.5,8),new THREE.MeshStandardMaterial({color:0x223344,metalness:.5}));
+  nose.rotation.z=-Math.PI/2; nose.position.set(1.8,-.1,0); g.add(nose);
+  const tail=new THREE.Mesh(new THREE.BoxGeometry(1.5,.4,.4),new THREE.MeshStandardMaterial({color:0x1a2a35}));
+  tail.position.set(-2,.2,0); g.add(tail);
+  const tRotor=new THREE.Mesh(new THREE.BoxGeometry(.1,.8,.08),new THREE.MeshStandardMaterial({color:0x888888,transparent:true,opacity:.6}));
+  tRotor.position.set(-2.8,.35,0); g.add(tRotor);
+  const rotorGroup=new THREE.Group(); rotorGroup.position.set(0,.65,0);
+  for(let i=0;i<2;i++){
+    const blade=new THREE.Mesh(new THREE.BoxGeometry(5,.06,.4),new THREE.MeshStandardMaterial({color:0x888888,transparent:true,opacity:.55}));
+    blade.rotation.y=i*Math.PI/2; rotorGroup.add(blade);
+  }
+  g.add(rotorGroup);
+  const sl1=new THREE.Mesh(new THREE.SphereGeometry(.18,6,6),new THREE.MeshStandardMaterial({color:0xff0000,emissive:0xff0000,emissiveIntensity:2}));
+  sl1.position.set(.3,.7,.0); g.add(sl1);
+  const sl2=new THREE.Mesh(new THREE.SphereGeometry(.18,6,6),new THREE.MeshStandardMaterial({color:0x0044ff,emissive:0x0044ff,emissiveIntensity:2}));
+  sl2.position.set(-.3,.7,0); g.add(sl2);
+  g.userData.rotor=rotorGroup;
+  g.userData.sirens=[sl1,sl2];
+  g.userData.sirenTimer=0;
+  return g;
+}
+
+function spawnHelicopter(){
+  if(heliMesh) return;
+  heliMesh=buildHelicopter();
+  heliMesh.position.set(playerMesh.position.x+20,30,playerMesh.position.z+20);
+  scene.add(heliMesh);
+}
+function removeHelicopter(){
+  if(!heliMesh)return;
+  scene.remove(heliMesh); heliMesh=null;
+}
+
+function updateHelicopter(dt){
+  if(!heliMesh||!chasing)return;
+  const px=playerMesh.position.x,pz=playerMesh.position.z,py=carY;
+  const targetY = Math.max(py+12, 22);
+  const hx=heliMesh.position.x, hz=heliMesh.position.z, hy=heliMesh.position.y;
+  const dx=px-hx, dy=targetY-hy, dz=pz-hz;
+  const dist=Math.sqrt(dx*dx+dz*dz);
+  const heliSpd = 0.18;
+  if(dist>5){
+    heliMesh.position.x+=Math.sign(dx)*Math.min(Math.abs(dx)*0.04+heliSpd,heliSpd*2);
+    heliMesh.position.z+=Math.sign(dz)*Math.min(Math.abs(dz)*0.04+heliSpd,heliSpd*2);
+  }
+  heliMesh.position.y+=(targetY-hy)*0.08;
+  heliMesh.rotation.y=Math.atan2(dx,dz);
+  heliMesh.userData.rotor.rotation.y+=dt*12;
+  heliMesh.userData.sirenTimer+=dt;
+  heliMesh.userData.sirens.forEach((s,i)=>{s.material.emissiveIntensity=Math.sin(heliMesh.userData.sirenTimer*8+i*Math.PI)>0?3:.1;});
+  if(!caught&&isAirborne&&dist<8&&Math.abs(hy-py)<10) getBusted();
+}
+
+function showPowerMsg(txt, dur=2000){
+  const el=document.getElementById('power-active-msg');
+  el.textContent=txt; el.style.opacity='1';
+  clearTimeout(window._pmt2);
+  window._pmt2=setTimeout(()=>el.style.opacity='0',dur);
+}
+
+function activatePower(){
+  const car=CARS[activeCar];
+  if(!car.power||powerCooldown>0) return;
+  const p=car.power;
+  powerCooldown=p.cd;
+  powerActive=true; powerTimer=0;
+
+  if(p.isJump){
+    carVY=0.35;
+    isAirborne=true;
+    showPowerMsg('🦘 JUMP!');
+  } else if(car.id===1){
+    pSpeed=Math.min(pSpeed*1.0+mphToV(car.mph)*2*.35, mphToV(car.mph)*2*1.4);
+    showPowerMsg('💨 BURST!');
+    setTimeout(()=>powerActive=false,600);
+  } else if(car.id===2){
+    ghostMode=true; ghostTimer=5;
+    playerMesh.traverse(m=>{if(m.material){m.material.transparent=true;m.material.opacity=0.25;}});
+    showPowerMsg('👁️ GHOST MODE!',5000);
+  } else if(car.id===3){
+    powerTimer=4;
+    showPowerMsg('🧲 COIN MAGNET!',4000);
+  } else if(car.id===4){
+    const px=playerMesh.position.x,pz=playerMesh.position.z;
+    npcs.forEach(n=>{if(!n.isCop)return;const dx=n.mesh.position.x-px,dz=n.mesh.position.z-pz;if(dx*dx+dz*dz<100){n.mesh.position.x+=dx*2.5;n.mesh.position.z+=dz*2.5;}});
+    if(chasing){endChase();flashMsg('💥 COPS RAMMED! CHASE ENDED!');}
+    showPowerMsg('💥 RAM!');
+    setTimeout(()=>powerActive=false,500);
+  } else if(car.id===5){
+    dev._savedNoclip=dev.noclip; dev.noclip=true;
+    powerTimer=3;
+    showPowerMsg('🌀 PHASE!',3000);
+  } else if(car.id===6){
+    powerTimer=4;
+    showPowerMsg('🔥 AFTERBURN!',4000);
+  } else if(car.id===7){
+    copStunTimer=6;
+    showPowerMsg('⚡ EMP PULSE! COPS STUNNED!',3000);
+    flashMsg('⚡ EMP — all cops stunned for 6s!');
+  } else if(car.id===9){
+    const px=playerMesh.position.x,pz=playerMesh.position.z;
+    npcs.forEach(n=>{const dx=n.mesh.position.x-px,dz=n.mesh.position.z-pz;const d2=dx*dx+dz*dz;if(d2<225){const f=2.5*(1-Math.sqrt(d2)/15);n.mesh.position.x+=dx*f;n.mesh.position.z+=dz*f;}});
+    if(chasing)endChase();
+    showPowerMsg('📯 HONK BLAST!');
+    setTimeout(()=>powerActive=false,500);
+  }
+}
+
+function updatePowerSystems(dt){
+  const car=CARS[activeCar];
+  if(powerCooldown>0) powerCooldown=Math.max(0,powerCooldown-dt);
+
+  if(powerTimer>0){
+    powerTimer=Math.max(0,powerTimer-dt);
+    if(car.id===3){
+      const px=playerMesh.position.x,pz=playerMesh.position.z;
+      coinState.forEach((cs,i)=>{if(!cs.active)return;const dx=px-cs.x,dz=pz-cs.z;if(dx*dx+dz*dz<200){cs.x+=(px-cs.x)*0.08;cs.z+=(pz-cs.z)*0.08;coinMeshes[i].position.set(cs.x,.85,cs.z);}});
+    }
+    if(car.id===5&&powerTimer<=0){ dev.noclip=dev._savedNoclip||false; }
+    if(car.id===6){ pSpeed=Math.min(pSpeed+mphToV(car.mph)*2*.03, mphToV(car.mph)*2*1.5); }
+    if(powerTimer<=0) powerActive=false;
+  }
+
+  if(ghostMode){
+    ghostTimer=Math.max(0,ghostTimer-dt);
+    if(ghostTimer<=0){
+      ghostMode=false;
+      playerMesh.traverse(m=>{if(m.material){m.material.opacity=1;m.material.transparent=false;}});
+    }
+  }
+
+  if(copStunTimer>0) copStunTimer=Math.max(0,copStunTimer-dt);
+
+  const GRAVITY=0.018;
+  if(isAirborne||carY>0){
+    carVY-=GRAVITY;
+    carY=Math.max(0,carY+carVY);
+    if(carY<=0){carY=0;carVY=0;isAirborne=false;}
+    playerMesh.position.y=carY;
+  }
+
+  const phud=document.getElementById('power-hud');
+  if(car.power){
+    phud.style.display='flex';
+    document.getElementById('power-icon').textContent=car.power.icon;
+    document.getElementById('power-name').textContent=car.power.name;
+    const pct=1-(powerCooldown/car.power.cd);
+    document.getElementById('power-cd-fill').style.width=(Math.max(0,Math.min(1,pct))*100)+'%';
+    document.getElementById('power-icon').style.filter=powerCooldown>0?'grayscale(0.7)':'none';
+  } else {
+    phud.style.display='none';
+  }
+
+  const jbw=document.getElementById('jump-bar-wrap');
+  if(car.id===8){
+    jbw.style.display='flex';
+    document.getElementById('jump-bar-fill').style.height=(carY/8*100)+'%';
+  } else {
+    jbw.style.display='none';
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// NPCs
 // ══════════════════════════════════════════════════════
 const NPC_DEFS=[
   {type:'sedan',    color:0x4488dd,spd:.05,isCop:false},
   {type:'sedan',    color:0xcc3333,spd:.045,isCop:false},
   {type:'sedan',    color:0x44aa66,spd:.055,isCop:false},
   {type:'firetruck',color:0xdd2200,spd:.03, isCop:false},
-  {type:'cop',      color:0xf0f0f0,spd:.08, isCop:true},
-  {type:'cop',      color:0xf0f0f0,spd:.09, isCop:true},
+  {type:'cop',      color:0xf0f0f0,spd:.26, isCop:true},
+  {type:'cop',      color:0xf0f0f0,spd:.29, isCop:true},
   {type:'bus',      color:0xddaa22,spd:.026,isCop:false},
   {type:'truck',    color:0x7799bb,spd:.035,isCop:false},
   {type:'sedan',    color:0xaa88cc,spd:.048,isCop:false},
@@ -693,15 +1334,12 @@ NPC_DEFS.forEach((cfg,i)=>{
   if(axis==='z'){group.position.set(road+lane,0,pos);group.rotation.y=sign>0?0:Math.PI;}
   else{group.position.set(pos,0,road+lane);group.rotation.y=sign>0?Math.PI/2:-Math.PI/2;}
   npcs.push({mesh:group,wheels,baseSpd:cfg.spd,axis,road,lane,sign,st:0,isCop:cfg.isCop,chasing:false,hidden:false,
-    // for cop pathfinding
     targetAngle:0, currentLane:lane, currentRoad:road});
 });
 
-// Road X and Z positions (the center lines of each road)
 const roadPositions = [];
 for(let i=0;i<=GRID;i++) roadPositions.push(i*CELL-HALF);
 
-// Snap a value to the nearest road position
 function snapToRoad(v) {
   let best=roadPositions[0], bestDist=Math.abs(v-roadPositions[0]);
   for(const r of roadPositions){const d=Math.abs(v-r);if(d<bestDist){bestDist=d;best=r;}}
@@ -714,49 +1352,43 @@ function updateNPCs(dt){
 
   npcs.forEach(n=>{
     if(n.hidden)return;
+    if(copStunTimer>0&&n.isCop){
+      n.mesh.userData.sirens&&n.mesh.userData.sirens.forEach(s=>s.material.emissiveIntensity=.05);
+      return;
+    }
+    if(ghostMode&&n.isCop) return;
 
     if(n.isCop&&chasing){
       n.chasing=true;
       const dx=ppx-n.mesh.position.x,dz=ppz-n.mesh.position.z;
       const dist=Math.sqrt(dx*dx+dz*dz);
 
-      // Road-following pursuit: move along roads
       const cx=n.mesh.position.x, cz=n.mesh.position.z;
       const nearRoadX=snapToRoad(cx), nearRoadZ=snapToRoad(cz);
       const onHRoad=Math.abs(cz-nearRoadZ)<ROAD/2+1;
       const onVRoad=Math.abs(cx-nearRoadX)<ROAD/2+1;
-      const cs=n.baseSpd; // already fast (0.08-0.09)
+      const cs=n.baseSpd;
 
       let moveX=0,moveZ=0;
       if(dist>3){
-        // Decide which road axis gets us closer
-        const wantX=Math.abs(dx)>Math.abs(dz); // prefer horizontal movement if dx is bigger
+        const wantX=Math.abs(dx)>Math.abs(dz);
 
         if(onVRoad&&onHRoad){
-          // At intersection - choose direction toward player
           if(wantX){moveX=Math.sign(dx)*cs;}
           else{moveZ=Math.sign(dz)*cs;}
         } else if(onVRoad){
-          // On a vertical road (fixed X) - move Z
-          // Can also turn at intersections
-          if(Math.abs(ppx-nearRoadX)<ROAD/2 && Math.abs(dx)>0.5){
-            // player on same road, just go
-          }
-          // If we'd rather go X, find the nearest intersection
           if(wantX && Math.abs(cz-snapToRoad(cz))<ROAD/2+1){
             moveX=Math.sign(dx)*cs;
           } else {
             moveZ=Math.sign(dz)*cs;
           }
         } else if(onHRoad){
-          // On a horizontal road (fixed Z) - move X
           if(!wantX && Math.abs(cx-snapToRoad(cx))<ROAD/2+1){
             moveZ=Math.sign(dz)*cs;
           } else {
             moveX=Math.sign(dx)*cs;
           }
         } else {
-          // Off-road: navigate back to nearest road
           const toRoadX=nearRoadX-cx,toRoadZ=nearRoadZ-cz;
           if(Math.abs(toRoadX)<Math.abs(toRoadZ)){
             moveX=Math.sign(toRoadX)*cs;
@@ -766,14 +1398,11 @@ function updateNPCs(dt){
         }
       }
 
-      // Apply movement (stay on roads by clamping to road lane if possible)
       const nx2=cx+moveX, nz2=cz+moveZ;
-      // Only block if actually in a building (not just near one)
       const inBld2=(x,z)=>{for(const b of buildingBoxes)if(x>b.minX&&x<b.maxX&&z>b.minZ&&z<b.maxZ)return true;return false;};
       if(!inBld2(nx2,cz))n.mesh.position.x=nx2;
       if(!inBld2(n.mesh.position.x,nz2))n.mesh.position.z=nz2;
 
-      // Face direction of movement
       if(Math.abs(moveX)>0.001||Math.abs(moveZ)>0.001){
         const ta=Math.atan2(moveX,moveZ);
         let diff=ta-n.mesh.rotation.y;
@@ -785,7 +1414,6 @@ function updateNPCs(dt){
       if(n.mesh.userData.sirens) n.mesh.userData.sirens.forEach((s,si)=>{s.material.emissiveIntensity=Math.sin(n.st*12+si*Math.PI)>0?3:.05;});
       n.wheels.forEach(w=>w.rotation.x+=cs*2.5);
 
-      // Check if cop caught player
       if(!caught&&dist<3.5){getBusted();}
 
     } else {
@@ -798,39 +1426,88 @@ function updateNPCs(dt){
   });
 }
 
+// Cop hit state — 3 second warning before chase begins
+let copHitPending = false, copHitTimer = 0;
+
+function spawnReinforcementCops(count){
+  // Spawn cops on nearby roads around the player
+  const px=playerMesh.position.x, pz=playerMesh.position.z;
+  const offsets=[[-1,0],[1,0],[0,-1],[0,1],[-1,-1],[1,1]].slice(0,count);
+  offsets.forEach(([ox,oz])=>{
+    const spawnX = snapToRoad(px + ox * CELL * 1.5);
+    const spawnZ = snapToRoad(pz + oz * CELL * 1.5);
+    const {group,wheels}=buildCar(0xf0f0f0,'cop'); scene.add(group);
+    const sign = Math.random()>.5?1:-1, lane = sign>0?2.8:-2.8;
+    const axis = Math.random()>.5?'z':'x';
+    if(axis==='z'){group.position.set(spawnX+lane,0,spawnZ);group.rotation.y=sign>0?0:Math.PI;}
+    else{group.position.set(spawnX,0,spawnZ+lane);group.rotation.y=sign>0?Math.PI/2:-Math.PI/2;}
+    npcs.push({mesh:group,wheels,baseSpd:0.09+Math.random()*0.02,axis,road:spawnX,lane,sign,st:0,
+               isCop:true,chasing:true,hidden:false,targetAngle:0,currentLane:lane,currentRoad:spawnX,baseSpd:0.27+Math.random()*0.04});
+  });
+}
+
 function checkCopCollision(){
-  if(chasing||caught)return;
+  if(chasing||caught||copHitPending)return;
   const px=playerMesh.position.x,pz=playerMesh.position.z;
   npcs.forEach(n=>{
     if(!n.isCop||n.hidden)return;
     const dx=px-n.mesh.position.x,dz=pz-n.mesh.position.z;
-    if(dx*dx+dz*dz<16){
-      triggerChase(60);
+    if(dx*dx+dz*dz<16 && !copHitPending){
+      copHitPending=true; copHitTimer=3;
       playCrashSound();
-      flashMsg('🚨 HIT A COP! RUNNING!');
+      updateMission('hitcop', 1);
+      const warn=document.getElementById('cop-warning');
+      warn.style.display='block'; warn.textContent='🚨 3';
     }
   });
 }
 
+function updateCopHitTimer(dt){
+  if(!copHitPending||caught)return;
+  copHitTimer-=dt;
+  const warn=document.getElementById('cop-warning');
+  const secs=Math.ceil(copHitTimer);
+  if(secs>=1) warn.textContent='🚨 '+secs;
+  if(copHitTimer<=0){
+    copHitPending=false;
+    warn.style.display='none';
+    triggerChase(60);
+    spawnReinforcementCops(3);
+    flashMsg('🚨 POLICE MOBILISED! 3 UNITS DISPATCHED!');
+  }
+}
+
 // ══════════════════════════════════════════════════════
-// INPUT + PHYSICS — FIXED building collision (no spin)
+// INPUT + PHYSICS
 // ══════════════════════════════════════════════════════
 const keys={};
 window.addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT')return;
   keys[e.code]=true;
-  if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();
+  if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','ShiftLeft','ShiftRight'].includes(e.code))e.preventDefault();
 });
 window.addEventListener('keyup',e=>{ keys[e.code]=false; });
 
 let pSpeed=0, pAngle=0, pSteer=0, camMode=0, wheelRot=0;
-// Drift physics
 let velX=0, velZ=0, drifting=false, driftFactor=0;
+let driftScore=0, driftCoinsEarned=0, lastDriftState=false;
+let turboFuel=0, turboActive=false, turboMax=100;
+// Powerup
+let powerCooldown=0, powerActive=false, powerTimer=0;
+// Jump / vertical physics
+let carY=0, carVY=0, isAirborne=false;
+// Ghost / phase mode
+let ghostMode=false, ghostTimer=0;
+// Cop stun
+let copStunTimer=0;
+// Helicopter
+let heliMesh=null;
 
 window.addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT')return;
   if(e.code==='Escape'&&running&&!caught){ togglePause(); }
   if(e.code==='KeyC'&&running&&!paused) setCam((camMode+1)%3);
+  if(e.code==='KeyE'&&running&&!paused&&!caught) activatePower();
 });
 
 function inBuilding(x,z){
@@ -876,17 +1553,37 @@ function startGame(){
   document.getElementById('shop-btn').style.display='block';
   document.getElementById('esc-hint').style.display='block';
   document.getElementById('panel-toggle').style.display='flex';
+  document.getElementById('mission-hud').style.display='block';
+  document.getElementById('turbo-bar-wrap').style.display='flex';
+  document.getElementById('power-hud').style.display='flex';
+  updateMissionHUD();
   running=true; paused=false;
 }
 function openShop(){paused&&closePause();document.getElementById('shop-overlay').style.display='flex';renderShopUI();}
 function closeShop(){document.getElementById('shop-overlay').style.display='none';}
-function openShopFromMenu(){document.getElementById('shop-overlay').style.display='flex';renderShopUI();}
-function openDevFromMenu(){startGame();openPanel();setTimeout(()=>{const b=document.getElementById('panel-body');b.scrollTop=b.scrollHeight;},80);}
+function openShopFromMenu(){
+  document.getElementById('mainmenu').style.display='none';
+  document.getElementById('shop-overlay').style.display='flex';
+  renderShopUI();
+}
 function togglePause(){paused?resumeGame():openPause();}
 function openPause(){paused=true;document.getElementById('pause-menu').style.display='flex';}
 function closePause(){paused=false;document.getElementById('pause-menu').style.display='none';}
 function resumeGame(){closePause();}
-function backToMenu(){closePause();endChase();document.getElementById('mainmenu').style.display='flex';document.getElementById('hud').style.display='none';document.getElementById('coins-hud').style.display='none';document.getElementById('shop-btn').style.display='none';document.getElementById('esc-hint').style.display='none';document.getElementById('panel-toggle').style.display='none';closePanel();running=false;}
+function backToMenu(){
+  closePause();endChase();
+  document.getElementById('mainmenu').style.display='flex';
+  document.getElementById('hud').style.display='none';
+  document.getElementById('coins-hud').style.display='none';
+  document.getElementById('shop-btn').style.display='none';
+  document.getElementById('esc-hint').style.display='none';
+  document.getElementById('panel-toggle').style.display='none';
+  document.getElementById('mission-hud').style.display='none';
+  document.getElementById('turbo-bar-wrap').style.display='none';
+  document.getElementById('power-hud').style.display='none';
+  document.getElementById('jump-bar-wrap').style.display='none';
+  closePanel();running=false;
+}
 
 // ══════════════════════════════════════════════════════
 // MAIN LOOP
@@ -902,6 +1599,8 @@ function animate(){
   if(!paused){
     updateNPCs(dt);
     coinMeshes.forEach((c,i)=>{if(coinState[i].active)c.rotation.z+=dt*1.8;});
+    const pt=performance.now()/1000;
+    nitroPads.forEach((g,i)=>{if(!nitroPadState[i].active)return;const pulse=0.8+Math.sin(pt*4+i)*0.4;g.children.forEach(c=>{if(c.material)c.material.emissiveIntensity=pulse*1.5;});g.rotation.y+=dt*1.2;});
   }
 
   if(running&&!paused&&!caught){
@@ -911,39 +1610,47 @@ function animate(){
     const D=keys['KeyD']||keys['ArrowRight'];
 
     const SPACE=keys['Space'];
+    const SHIFT=keys['ShiftLeft']||keys['ShiftRight'];
     const maxMph=dev.speed?400:CARS[activeCar].mph;
-    // Scale speed so 50mph feels fast (2x the old velocity)
     const MAX=mphToV(maxMph)*2;
     const ACCEL=MAX*.026, DECEL=MAX*.04;
 
-    if(W)      pSpeed=Math.min(pSpeed+ACCEL, MAX);
+    turboActive = SHIFT && turboFuel > 0;
+    if(turboActive){
+      turboFuel = Math.max(0, turboFuel - dt*28);
+    }
+    // Turbo only refills from nitro pads — no passive recharge
+    const turboMult = turboActive ? 1.55 : 1.0;
+
+    if(W)      pSpeed=Math.min(pSpeed+ACCEL*turboMult, MAX*turboMult);
     else if(S) pSpeed=Math.max(pSpeed-DECEL,-MAX*.3);
     else       pSpeed*=.972;
 
-    // Slower, more realistic steering — rate reduced, also scales down at high speed
-    const speedFrac=Math.abs(pSpeed)/MAX;
-    const steerRate=0.007; // slow base
-    const steerMax=0.32;
-    const highSpeedReduction=Math.max(0.35, 1-speedFrac*0.55); // less turn at top speed
-    if(Math.abs(pSpeed)>.0005){
-      if(A)      pSteer=Math.min(pSteer+steerRate*highSpeedReduction, steerMax);
-      else if(D) pSteer=Math.max(pSteer-steerRate*highSpeedReduction,-steerMax);
-      else       pSteer*=.84;
-    } else pSteer*=.6;
-
-    // DRIFT — hold Space to break traction
-    drifting = SPACE && speedFrac>0.25 && (A||D);
-    if(drifting){
-      driftFactor=Math.min(driftFactor+dt*2.5,1);
-      // Very gentle angle change — just a slow rotation, not a spin
-      pAngle+=pSteer*pSpeed*0.35;
-    } else {
-      driftFactor=Math.max(driftFactor-dt*3.5,0);
-      pAngle+=pSteer*pSpeed*0.9;
+    const tbFill=document.getElementById('turbo-bar-fill');
+    const tbReady=document.getElementById('turbo-ready');
+    if(tbFill){
+      tbFill.style.width=(turboFuel/turboMax*100)+'%';
+      tbFill.style.background=turboActive?'linear-gradient(90deg,#ff2200,#ffaa00)':'linear-gradient(90deg,#ff6600,#ffdd00)';
+      tbReady.style.opacity=turboFuel>=turboMax&&!turboActive?'1':'0';
     }
 
-    // Drift velocity: momentum carries the car in the OLD direction while angle rotates
-    const grip = drifting ? 0.04+driftFactor*0.03 : 0.2; // very low grip = big slide
+    const speedFrac = Math.abs(pSpeed) / MAX;
+
+    const steerInput = A ? 1 : D ? -1 : 0;
+    pSteer += (steerInput - pSteer) * 0.12;
+
+    const turnRate = 0.018 * Math.max(0.3, 1 - speedFrac * 0.6);
+
+    drifting = SPACE && speedFrac > 0.2;
+    if (drifting) {
+      driftFactor = Math.min(driftFactor + dt * 2.5, 1);
+      pAngle += pSteer * turnRate * 1.7;
+    } else {
+      driftFactor = Math.max(driftFactor - dt * 3.5, 0);
+      pAngle += pSteer * turnRate;
+    }
+
+    const grip = drifting ? 0.04+driftFactor*0.03 : 0.2;
     const targetVX=Math.sin(pAngle)*pSpeed;
     const targetVZ=Math.cos(pAngle)*pSpeed;
     velX+=(targetVX-velX)*grip;
@@ -967,35 +1674,81 @@ function animate(){
       if(Math.abs(prevSpeed)>.06) playCrashSound();
     }
 
-    // Drift HUD
-    const driftEl=document.getElementById('drift-msg');
-    driftEl.style.opacity=drifting&&driftFactor>0.1?'1':'0';
+    // Map boundary — bounce off barrier walls
+    const BOUNDARY = HALF + ROAD/2 + 2.5;
+    let hitBoundary = false;
+    if(playerMesh.position.x > BOUNDARY){
+      playerMesh.position.x = BOUNDARY; velX = -Math.abs(velX)*0.35; hitBoundary=true;
+    } else if(playerMesh.position.x < -BOUNDARY){
+      playerMesh.position.x = -BOUNDARY; velX = Math.abs(velX)*0.35; hitBoundary=true;
+    }
+    if(playerMesh.position.z > BOUNDARY){
+      playerMesh.position.z = BOUNDARY; velZ = -Math.abs(velZ)*0.35; hitBoundary=true;
+    } else if(playerMesh.position.z < -BOUNDARY){
+      playerMesh.position.z = -BOUNDARY; velZ = Math.abs(velZ)*0.35; hitBoundary=true;
+    }
+    if(hitBoundary){ const prevSpd=pSpeed; pSpeed*=0.3; driftFactor=0; if(Math.abs(prevSpd)>.06) playCrashSound(); }
 
-    // Visual yaw: car body rotates to show it's sliding — angle between velocity and facing
+    if(drifting && driftFactor>0.15 && Math.abs(pSteer)>0.2){
+      driftScore += dt * speedFrac * 60;
+    }
+
+    if(!drifting && lastDriftState && driftScore > 0){
+      const earned = Math.floor(driftScore / 80);
+      if(earned >= 1){
+        coins += earned;
+        updateCoinsUI();
+        playCoinSound();
+        flashMsg('🔥 DRIFT BONUS +'+earned+' coin'+(earned>1?'s':'')+'!');
+        driftCount++;
+        updateMission('drifts', 1);
+        updateMission('driftcoins', earned);
+      }
+      driftScore = 0;
+    }
+    lastDriftState = drifting;
+
+    const curMph = Math.round(Math.abs(pSpeed)/MAX*maxMph);
+    if(curMph > 0) updateMission('speed', curMph);
+
+    const driftEl=document.getElementById('drift-msg');
+    if(drifting && driftFactor>0.1){
+      const previewCoins=Math.floor(driftScore/80);
+      driftEl.textContent='🔥 DRIFTING'+(previewCoins>0?' +'+previewCoins+'🪙':'');
+      driftEl.style.opacity='1';
+    } else {
+      driftEl.style.opacity='0';
+      if(!drifting) driftScore=Math.max(0,driftScore-dt*30);
+    }
+
     const velAngle=Math.atan2(velX,velZ);
     let slideAngle=velAngle-pAngle;
-    // Normalize to -PI..PI
     while(slideAngle>Math.PI)slideAngle-=Math.PI*2;
     while(slideAngle<-Math.PI)slideAngle+=Math.PI*2;
-    // Clamp slide to reasonable visual amount and only show during drift
-    const slideVis=drifting ? Math.max(-0.45,Math.min(0.45,slideAngle)) : slideAngle*0.15;
-    const visualYaw=pAngle+slideVis*(driftFactor*0.7);
+    const slideVis=drifting ? Math.max(-0.5,Math.min(0.5,slideAngle)) : slideAngle*0.1;
+    const visualYaw=pAngle+slideVis*(driftFactor*0.8);
     playerMesh.rotation.y=visualYaw;
-    // Body roll — moderate
-    const rollTarget=-pSteer*Math.abs(pSpeed)*(drifting?3:2);
+    const rollTarget = drifting
+      ? pSteer*Math.abs(pSpeed)*4
+      : -pSteer*Math.abs(pSpeed)*2;
     playerMesh.rotation.z+=(rollTarget-playerMesh.rotation.z)*0.1;
     wheelRot+=Math.sqrt(velX*velX+velZ*velZ)*22;
     playerWheels.forEach(w=>w.rotation.x=wheelRot);
 
     checkCoins();
     checkCopCollision();
-
+    updateCopHitTimer(dt);
+    checkNitroPads();
+    updatePowerSystems(dt);
+    updateHelicopter(dt);
     if(chasing){
       chaseTimeLeft=Math.max(0,chaseTimeLeft-dt);
       updateWantedStars();
       const secs=Math.ceil(chaseTimeLeft);
       document.getElementById('chase-timer-display').textContent=secs>0?'🚨 '+secs+'s':'';
       document.getElementById('p-wanted').textContent=chasing?'⭐'.repeat(chaseTimeLeft>40?3:chaseTimeLeft>20?2:1)+' '+Math.ceil(chaseTimeLeft)+'s':'none';
+      const survivedSecs = Math.floor(60 - chaseTimeLeft);
+      updateMission('survive', survivedSecs);
       if(chaseTimeLeft<=0) endChase();
     }
 
@@ -1004,9 +1757,9 @@ function animate(){
     const mph=Math.round(Math.abs(pSpeed)/MAX*maxMph);
     document.getElementById('hspeed').textContent=mph;
     document.getElementById('p-speed').textContent=mph+' mph';
-    updateEngineAudio(Math.abs(pSpeed)/MAX);
+    updateEngineAudio(Math.abs(pSpeed)/MAX, drifting);
   } else {
-    updateEngineAudio(0);
+    updateEngineAudio(0, false);
   }
 
   const px=playerMesh.position.x,py=playerMesh.position.y,pz2=playerMesh.position.z;
